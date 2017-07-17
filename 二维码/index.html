@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+
+		<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".example1").on("click", function(event) {
+					event.preventDefault();
+					html2canvas(document.getElementById("textArea"), {
+						allowTaint: true,
+						taintTest: false,
+						onrendered: function(canvas) {
+							canvas.id = "mycanvas";
+							//document.body.appendChild(canvas);    
+							//生成base64图片数据    
+							var dataUrl = canvas.toDataURL();
+							var newImg = document.createElement("img");
+							newImg.src = dataUrl;
+							document.body.appendChild(newImg);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<input type="text" name="text" id="text" placeholder="请输入生成二维码的内容" />
+		<br />
+		<input type="button" name="text" id="btn" value="点击生成二维码" />
+		<br />
+		<div id="ma" style="width: 400px; height: 400px; margin: 0 auto;
+			 text-align: center; border: solid 1px red;">
+
+		</div>
+
+		<textArea id="textArea" col="20" rows="10"></textArea>
+
+		<input class="example1" type="button" value="button">
+
+	</body>
+
+</html>
