@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/pullToRefresh.css" />
+		<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/pullToRefresh.js"></script>
+		<script type="text/javascript" src="js/pullToGet.js"></script>
+		<script type="text/javascript">
+
+			function refresh_cur() {
+				var data = {
+					cb_func: cb_func, //回调方法
+					url: 'www.baidu.com',
+					cb_funcArg: [],
+					inputNames: ['id'],//页面的参数   数组中为input的name属性
+					currentPage: 1  //默认访问第几页
+				};
+				init_pullToInfo(data);
+			}
+
+			$(function() {
+				//初始化控件
+				refresh_cur();
+			});
+			
+			//数据回调处理
+			function cb_func(result, isload) {
+				//如果是上拉  则先清除以前的数据
+				if(isload){
+					$("#tempList").empty();
+					$("#tempList").html('');
+				}
+				//开始 $("#tempList").append(....);
+				
+				/**
+				 * 后台需要注意的,传入后台的只是一个currentPage(当前页),
+				 * 后台需要传到前台的数据是:  Map   其中一个key是 "pageCount"(一共多少页数)   另外一个key则是数据
+				 * 
+				 */
+				
+			}
+		</script>
+
+	</head>
+
+	<body>
+		
+		<!--
+        	作者：白成卫
+        	时间：2017-06-07
+        	描述：H5分页Demo
+        -->
+		
+		
+		<!--当前页数-->
+		<input type="hidden" name="currentPage" value="1" />
+		<!--参数.....可以设置更多-->
+		<input type="hidden" name="id" value="1" />
+		
+		<!--分页容器-->
+		<div id="wrapper" style="z-index: -1;top: 1rem;bottom: 0px;left: 0;">
+			<ol class="activity_con" id="tempList">
+
+				<!--
+					
+					 这里填写分页的内容
+					
+				-->
+
+			</ol>
+		</div>
+
+	</body>
+
+</html>
